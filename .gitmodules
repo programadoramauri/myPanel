@@ -1,0 +1,3 @@
+[submodule "app/Plugin/Media"]
+	path = app/Plugin/Media
+	url = https://github.com/programadoramauri/CakePHP-Media-Plugin.git

@@ -30,4 +30,82 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+	public $components = array(
+		'DebugKit.Toolbar',
+		'Paginator',
+		'Session'
+	);
+
+	public $helpers = array(
+		'Form'
+	);
+
+	public $paginate = array(
+		'limit' => 10
+	);
+
+	public function admin_index(){
+		$this->Paginator->settings = $this->paginate;
+		$data = $this->Paginator->paginate($this->modelClass);
+		$this->set('data', $data);
+	}
+
+	public function admin_edit($id = null){
+		if(!$id){
+			throw new NotFoundException(__('Invalid Data'));
+		}
+
+		$post = $this->{$this->modelClass}->findById($id);
+
+		if(!$post){
+			throw new NotFoundException(__('Invalid Data'));
+		}
+
+		if($this->request->is(array('post', 'put'))){
+			if($this->_saveData($this->request->data)){
+				$this->Session->setFlash('Your data has been updated');
+				return $this->redirect(array('action' => 'index'));
+			}
+		}
+		if(!$this->request->data) {
+			$this->request->data = $post;
+		}
+	}
+
+	public function admin_add(){
+		$this->set('formName', $this->modelClass);
+		if($this->request->is('post')){
+			if($this->_saveData($this->request->data)) {
+				$this->Session->setFlash(__('Your data has been saved'));
+				return $this->redirect(array('action' => 'index'));
+			}
+		}
+	}
+
+	public function admin_delete($id = null){
+		if(!$id){
+			throw new NotFoundException(__('Invalid Data'));
+		}
+
+		$data = $this->{$this->modelClass}->findById($id);
+
+		if(!$data){
+			throw new NotFoundException(__('Invalid Data'));
+		}
+
+		if($this->{$this->modelClass}->delete($id)){
+			$this->Session->setFlash(__('Your data has been deleted'));
+			$this->redirect(array('action' => 'index'));
+		}
+	}
+
+	public function view(){
+		$this->Paginator->settings = $this->paginate;
+		$data = $this->Paginator->paginate($this->modelClass);
+		$this->set('data', $data);
+	}
+
+	private function _saveData($data){
+		return $this->{$this->modelClass}->saveAll($data);
+	}
 }
