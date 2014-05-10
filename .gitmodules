@@ -3,4 +3,7 @@
 	url = https://github.com/programadoramauri/CakePHP-Media-Plugin.git
 [submodule "app/Plugin/Attach"]
 	path = app/Plugin/Attach
-	url = git@github.com:krolow/Attach.git
+	url = https://github.com/krolow/Attach.git
+[submodule "Attach"]
+	path = Attach
+	url = https://github.com/krolow/Attach.git
