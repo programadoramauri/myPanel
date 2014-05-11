@@ -378,9 +378,9 @@ class UploadBehavior extends ModelBehavior
      * @return boolean
      * @access public
      */
-    public function afterSave(Model $model, $created)
+    public function afterSave(Model $model, $created, $options = array())
     {
-        parent::afterSave($model, $created);
+        parent::afterSave($model, $created, $options);
 
         foreach ($this->types[$model->alias] as $type) {
 
