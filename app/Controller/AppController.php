@@ -45,6 +45,12 @@ class AppController extends Controller {
 		'limit' => 10
 	);
 
+	public function beforeFilter(){
+		if(isset($this->params['prefix']) && $this->params['prefix'] == 'admin'){
+			$this->layout = 'admin';
+		}
+	}
+
 	public function admin_index(){
 		$this->Paginator->settings = $this->paginate;
 		$data = $this->Paginator->paginate($this->modelClass);

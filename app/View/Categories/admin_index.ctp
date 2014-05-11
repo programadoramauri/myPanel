@@ -1,5 +1,5 @@
 <?php echo $this->Html->link(__('Add'), array('controller' => 'categories', 'action' => 'add')); ?>
-<table>
+<table class="table table-bordered table-hover table-striped table-sorter">
 	<thead>
 		<th><?php echo __('Name') ?></th>
 		<th><?php echo __('Num Quotes') ?></th>

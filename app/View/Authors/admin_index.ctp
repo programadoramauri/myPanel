@@ -10,7 +10,12 @@
 	<tbody>
 		<?php foreach ($data as $d): ?>
 		<tr>
-			<td><?php echo $d['Author']['name']?></td>
+			<td>
+				<?php if(!is_null($d['AttachmentImage']['model'])): ?>
+					<?php echo $this->Attach->image($d['AttachmentImage'], 'thumb') ?>
+				<?php endif ?>
+				<?php echo $d['Author']['name']?>
+			</td>
 			<td><?php echo $d['Author']['quote_count']?></td>
 			<td><?php echo $this->Time->format($d['Author']['created'], '%d/%m/%Y %H:%M:%S') ?></td>
 			<td><?php echo $this->Time->format($d['Author']['modified'],  '%d/%m/%Y %H:%M:%S')?></td>

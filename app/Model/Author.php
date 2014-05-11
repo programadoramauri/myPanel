@@ -39,7 +39,7 @@ class Author extends AppModel{
 		'Utils.SoftDelete',
 		'Attach.Upload' => array(
 			'image' => array(
-				'dir' => 'webroot{DS}uploads{DS}media{DS}image',
+				'dir' => 'webroot{DS}uploads{DS}media{DS}author',
 				'thumbs' => array(
 					'thumb' => array(
 						'w' => 190,
