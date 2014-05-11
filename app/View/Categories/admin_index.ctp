@@ -10,7 +10,11 @@
 	<tbody>
 		<?php foreach ($data as $d): ?>
 		<tr>
-			<td><?php echo $d['Category']['name']?></td>
+			<td>
+				<?php if(!is_null($d['AttachmentImage']['model'])): ?>
+				<?php echo $this->Attach->image($d['AttachmentImage'], 'thumb') ?>
+			<?php endif ?>
+				<?php echo $d['Category']['name']?></td>
 			<td><?php echo $d['Category']['quote_count']?></td>
 			<td><?php echo $this->Time->format($d['Category']['created'], '%d/%m/%Y %H:%M:%S') ?></td>
 			<td><?php echo $this->Time->format($d['Category']['modified'], '%d/%m/%Y %H:%M:%S') ?></td>

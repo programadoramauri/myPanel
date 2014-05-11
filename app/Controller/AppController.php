@@ -37,7 +37,8 @@ class AppController extends Controller {
 	);
 
 	public $helpers = array(
-		'Form'
+		'Form',
+		'Attach.Attach'
 	);
 
 	public $paginate = array(
